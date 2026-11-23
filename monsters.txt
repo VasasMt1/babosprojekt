@@ -1,0 +1,12 @@
+1 Emberfang Fire 120 35 18 5 Common 
+2 Aquafin Water 110 28 24 4 Common
+3 Thornback Nature 150 25 32 6 Uncommon
+4 Voltwing Electric 95 42 16 7 Rare 
+5 Frostpaw Ice 130 31 27 6 Uncommon
+6 Stonehorn Earth 180 22 40 8 Rare 
+7 Shadowclaw Dark 105 46 20 9 Epic
+8 Sunfeather Light 115 39 22 8 Epic 
+9 Mudpuddle Water 140 19 30 3 Common
+10 Cinderbeak Fire 100 38 17 5 Uncommon
+11 Brambletusk Nature 160 27 34 7 Rare
+12 Stormscale Electric 125 44 25 10 Legendary
