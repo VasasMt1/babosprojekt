@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,7 +43,7 @@ namespace Novemberclassplojeckt
         static string fajlUt = @"C:\Users\Máté\source\repos\VasasMt1\babosplojekt1\monsters.txt"; 
         static void Main(string[] args)
         {
-
+            fájl();
             bool alapKiiras = true;
 
             while (alapKiiras)
@@ -50,7 +52,8 @@ namespace Novemberclassplojeckt
                 Console.WriteLine("1. Minden szörnykiirasa a txt-bol");
                 Console.WriteLine("2. Keresés a szörnyek között");
                 Console.WriteLine("3. Adj szörnyet a fájlhoz");
-                Console.WriteLine("4. Vége");
+                Console.WriteLine("4. Legjobb szörny egy adott kategoriában");
+                Console.WriteLine("5. Vége");
                 Console.WriteLine("Válaszod: ");
 
                 string választas = Console.ReadLine();
@@ -67,6 +70,9 @@ namespace Novemberclassplojeckt
                         SzörnyHozzaadas();
                         break;
                     case "4":
+                        Szörnymaxing();
+                        break;
+                    case "5":
                         alapKiiras = false;
                         Console.WriteLine("Viszlát");
                         break;
@@ -149,8 +155,65 @@ namespace Novemberclassplojeckt
             Monster ujSzorny = new Monster(id,nev,kepesseg,eletero,tamadas,vedekezes,ritkasag);
             szornyek.Add(ujSzorny);
 
+            string ujszornysor = $"{id} {nev} {kepesseg} {eletero} {tamadas} {vedekezes} {ritkasag}";
+
+            File.AppendAllText(fajlUt, ujszornysor +"\n");
+
             Console.WriteLine("Sikeres volt a szorny importálás.");
 
+        }
+
+        static void Szörnymaxing() 
+        {
+            Console.WriteLine("Melyik érték szerint szeretnéd látni a legjobb szörnyet?");
+            Console.WriteLine("1.Életerő");
+            Console.WriteLine("2.Támadás");
+            Console.WriteLine("3.Védekezés");
+
+            Console.WriteLine("Választás: ");
+            string valastas = Console.ReadLine();
+
+            int max = 0;
+            int index = 0; 
+            switch (valastas) 
+            {
+                case "1":
+                    for (int i = 0; i < szornyek.Count; i++)
+                    {
+                        if (szornyek[i].Életerő > max)
+                        {
+                            max = szornyek[i].Életerő;
+                            index = i;
+                        }
+                    }
+                    break;
+                case "2":
+                    for (int i = 0; i < szornyek.Count; i++)
+                    {
+                        if (szornyek[i].Támadás > max)
+                        {
+                            max = szornyek[i].Támadás;
+                            index = i;
+                        }
+                    }
+                    break;
+
+                case "3":
+                    for (int i = 0; i < szornyek.Count; i++)
+                    {
+                        if (szornyek[i].Védekezés > max)
+                        {
+                            max = szornyek[i].Védekezés;
+                            index = i;
+                        }
+                    }
+                    break;
+
+                default: Console.WriteLine("Hibás választás ");
+                    break;
+            }
+            Console.WriteLine("A legjobb szörny:");
+            szornyek[index].Kiir();
         }
     }
 }
