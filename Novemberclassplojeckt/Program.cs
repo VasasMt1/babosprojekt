@@ -40,7 +40,7 @@ namespace Novemberclassplojeckt
 
         }
         static List<Monster> szornyek = new List<Monster>();
-        static string fajlUt = @"C:\Users\Máté\source\repos\VasasMt1\babosplojekt1\monsters.txt"; 
+        static string fajlUt = "monsters.txt";
         static void Main(string[] args)
         {
             fájl();
@@ -89,6 +89,10 @@ namespace Novemberclassplojeckt
 
         static void fájl()
         {
+
+            Console.WriteLine("Keresett fájl helye: " + Path.GetFullPath(fajlUt));
+            Console.WriteLine("Létezik a fájl? " + File.Exists(fajlUt));
+
             if (!File.Exists(fajlUt))
             { 
                 Console.WriteLine("Nem találtam ilyen fájl nevet");
